@@ -24,13 +24,9 @@ use CGI::Fast qw/:standard :debug/;
 use POSIX;
 use Sys::Syslog;
 use FCGI::ProcManager::Dynamic2;
-use Data::Dumper;
 use JSON;
-use Data::Dumper;
-use Switch;
-use Encode;
-use mc;
 use js;
+use LWP::UserAgent;
 
 use vars qw($cfg);
 
@@ -73,8 +69,21 @@ $pm->pm_manage();
 while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
 	$pm->pm_pre_dispatch();
 
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(1);
+    
+    my $response = $ua->get('http://localhost:8000/status-json.xsl');
+
+    if ($response->is_success) {
+        $answer->{result} = 200;
+        $answer->{status} = $response->content();
+    }
+    else {
+        $answer->{result} = 404;
+        $answer->{status} = $response->status_line;
+    }
+
     my $answer;
-    $answer->{result} = 200;
 	json_out($query,$answer);
 	$pm->pm_post_dispatch();
 };
