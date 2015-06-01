@@ -73,6 +73,7 @@ $pm->pm_manage();
 while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
 	$pm->pm_pre_dispatch();
 
+    my $answer;
     $answer->{result} = 200;
 	json_out($query,$answer);
 	$pm->pm_post_dispatch();
