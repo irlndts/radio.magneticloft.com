@@ -58,6 +58,8 @@ footer {
   }
 }
 
-.jumbotron {
+.jumbotron h1 {
+    margin-top: -10px;
+    color: #900020;
   /*padding: 20px 0;*/
 }

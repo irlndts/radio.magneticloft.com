@@ -72,7 +72,9 @@ while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
     my $ua = LWP::UserAgent->new;
     $ua->timeout(1);
     
-    my $response = $ua->get('http://localhost:8000/status-json.xsl');
+    my $response = $ua->get($conf->{radio_icecast_url}.'/status-json.xsl');
+    
+    my $answer;
 
     if ($response->is_success) {
         $answer->{result} = 200;
@@ -83,7 +85,6 @@ while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
         $answer->{status} = $response->status_line;
     }
 
-    my $answer;
 	json_out($query,$answer);
 	$pm->pm_post_dispatch();
 };
