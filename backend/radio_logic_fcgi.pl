@@ -72,7 +72,7 @@ while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
     my $ua = LWP::UserAgent->new;
     $ua->timeout(1);
     
-    my $response = $ua->get($conf->{icecast_api_url}.'/status-json.xsl');
+    my $response = $ua->get($cfg->{icecast_api_url}.'/status-json.xsl');
     
     my $answer;
 
