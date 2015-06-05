@@ -81,10 +81,8 @@ while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
         $answer->{result} = 200;
         $answer->{status} = "Ok";
         my $content = js::to_hash($response->content());
-        to_syslog($cfg,Dumper($content));
-        
-        $answer->{now_playing} = $content->{isestats}->{source}->{title};
-        $answer->{now_listeners} = $content->{isestats}->{source}->{listeners};
+        $answer->{now_playing} = $content->{icestats}->{source}->{title};
+        $answer->{now_listeners} = $content->{icestats}->{source}->{listeners};
     }
     else {
         $answer->{result} = 404;
