@@ -81,7 +81,7 @@ while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
         $answer->{result} = 200;
         $answer->{status} = "Ok";
         my $content = $response->content();
-        to_syslog($cfg,$conten);
+        to_syslog($cfg,$contenr);
         
         #$answer->{now_playing} = $content->{isestats}->{source}->{title};
         #$answer->{now_listeners} = $content->{isestats}->{source}->{listeners};
