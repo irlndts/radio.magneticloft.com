@@ -19,11 +19,12 @@ $(document).ready(function () {
 		// данные содержат JSON-значения, возвращенные Perl-сценарием 
 		success: function(data){
 			if (data.error) { // сценарий возвратил ошибку
-				$('a#play-now').text("data.error: " + data.error);
-				$('a#play-last').addClass("error");
+				$('a#play-now').text("");
+				
 			} // если
 			else { // вход в систему был успешным
-				$('a#play-now').text("data.error: " + data.status.icestats);
+				$('a#play-now').text(data.now_playing);
+				$('a#listeners-now').text(data.now_listeners);
 				//$('div#play-last').addClass("error");
 				
 			};

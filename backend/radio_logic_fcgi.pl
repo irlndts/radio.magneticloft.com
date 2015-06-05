@@ -78,7 +78,10 @@ while ($pm->pm_loop() && (my $query = new CGI::Fast)) {
 
     if ($response->is_success) {
         $answer->{result} = 200;
-        $answer->{status} = $response->content();
+        my $content = $response->content();
+        $answer->{status} = "Ok";
+        $answer->{now_playing} = $content->{isestats}->{source}->{title};
+        $answer->{now_listeners} = $content->{isestats}->{source}->{listeners};
     }
     else {
         $answer->{result} = 404;
