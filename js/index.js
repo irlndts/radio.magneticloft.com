@@ -23,7 +23,7 @@ $(document).ready(function () {
 				$('a#play-last').addClass("error");
 			} // если
 			else { // вход в систему был успешным
-				$('a#play-now').text("data.error: " + data.status);
+				$('a#play-now').text("data.error: " + data.status.icestats.source.title);
 				//$('div#play-last').addClass("error");
 				
 			};
